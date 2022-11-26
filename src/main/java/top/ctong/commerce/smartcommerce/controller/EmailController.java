@@ -50,38 +50,7 @@ public class EmailController {
      */
     @PostMapping("/user/register/send_register_code")
     public R userRegisterCode(UserRegisterCodeDto dto) throws MessagingException {
-//        String cacheKey = RedisKeys.USER_REGISTER_EMAIL_CODE.KEY() + dto.getEmailNo();
-//        BoundValueOperations<String, String> ops = stringRedisTemplate.boundValueOps(cacheKey);
-//        String cacheEmailCode = ops.get();
-//
-//
 
-        Properties properties = System.getProperties();
-
-        properties.setProperty("mail.smtp.host", "smtp.qq.com");
-
-        Session session = Session.getDefaultInstance(properties);
-        session.setDebug(true);
-
-        Transport transport = session.getTransport();
-
-        transport.connect("smtp.qq.com", "2621869236@qq.com", "ptnzfqgkyhwmdhgb");
-
-        MimeMessage message = new MimeMessage(session);
-
-        message.addFrom(new InternetAddress[]{new InternetAddress("2621869236@qq.com")});
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress("2621869236@qq.com"));
-
-        message.setSubject("标题");
-        // 邮件的文本内容
-        message.setContent("<h1> Hello world! </h1>", "text/html;charset=UTF-8");
-
-        transport.sendMessage(message, message.getAllRecipients());
-
-        transport.close();
-
-//        smtp.qq.com
-        // 授权码：ptnzfqgkyhwmdhgb
         return R.ok();
     }
 
