@@ -1,8 +1,5 @@
 package top.ctong.commerce.smartcommerce.service;
 
-import top.ctong.commerce.smartcommerce.Util.email.exception.UnsupportedEmailServiceProviderException;
-
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -31,5 +28,5 @@ public interface EmailService {
      * @author Clover You
      * @date 2022/8/7 3:13 AM
      */
-    boolean userRegisterCode(@NotNull String email) throws UnsupportedEmailServiceProviderException;
+    boolean userRegisterCode(@NotNull String email);
 }
