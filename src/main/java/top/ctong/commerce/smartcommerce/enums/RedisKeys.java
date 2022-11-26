@@ -1,5 +1,7 @@
 package top.ctong.commerce.smartcommerce.enums;
 
+import lombok.Getter;
+
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
@@ -25,7 +27,11 @@ public enum RedisKeys {
      */
     USER_REGISTER_EMAIL_CODE("user_register_email_code:");
 
-    private String key;
+    private final String key;
+
+    public String KEY() {
+        return this.key;
+    }
 
     private RedisKeys(String key) {
         this.key = key;

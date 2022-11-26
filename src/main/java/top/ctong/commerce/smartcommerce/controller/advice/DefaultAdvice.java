@@ -22,7 +22,7 @@ import top.ctong.commerce.smartcommerce.Util.R;
  * @email cloveryou02@163.com
  * @create 2022-08-07 3:46 AM
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class DefaultAdvice {
     
     /** 
@@ -30,8 +30,8 @@ public class DefaultAdvice {
      * @author Clover
      * @date 2022/8/7 3:48 AM
      */
-    @ExceptionHandler
-    public R defaultHandler() {
-        return R.fail();
-    }
+//    @ExceptionHandler
+//    public R defaultHandler() {
+//        return R.fail();
+//    }
 }

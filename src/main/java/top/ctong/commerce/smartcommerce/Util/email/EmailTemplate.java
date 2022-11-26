@@ -27,7 +27,7 @@ import java.util.List;
  * @create 2022-08-07 2:50 AM
  */
 @Slf4j
-@Component
+//@Component
 public class EmailTemplate {
 
     @Setter(onMethod = @__(@Autowired))

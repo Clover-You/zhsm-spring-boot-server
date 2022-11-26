@@ -34,8 +34,8 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-    @Setter(onMethod = @__(@Autowired))
-    private EmailService emailService;
+//    @Setter(onMethod = @__(@Autowired))
+//    private EmailService emailService;
 
     /**
      * 用户登录

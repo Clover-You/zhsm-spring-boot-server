@@ -28,8 +28,8 @@ import top.ctong.commerce.smartcommerce.service.EmailService;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    @Setter(onMethod = @__(@Autowired))
-    private EmailTemplate emailTemplate;
+//    @Setter(onMethod = @__(@Autowired))
+//    private EmailTemplate emailTemplate;
 
     /**
      * 发送用户注册邮箱
@@ -39,6 +39,7 @@ public class EmailServiceImpl implements EmailService {
      */
     @Override
     public boolean userRegisterCode() throws UnsupportedEmailServiceProviderException {
-        return emailTemplate.send();
+//        return emailTemplate.send();
+        return false;
     }
 }

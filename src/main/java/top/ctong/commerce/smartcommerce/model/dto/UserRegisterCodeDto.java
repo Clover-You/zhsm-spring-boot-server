@@ -22,5 +22,9 @@ import lombok.Data;
  */
 @Data
 public class UserRegisterCodeDto {
+
+    /**
+     * 邮箱
+     */
     private String emailNo;
 }
