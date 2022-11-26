@@ -2,20 +2,16 @@ package top.ctong.commerce.smartcommerce.controller;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.ctong.commerce.smartcommerce.Util.R;
-import top.ctong.commerce.smartcommerce.enums.RedisKeys;
+import top.ctong.commerce.smartcommerce.Util.email.exception.UnsupportedEmailServiceProviderException;
 import top.ctong.commerce.smartcommerce.model.dto.UserRegisterCodeDto;
+import top.ctong.commerce.smartcommerce.service.EmailService;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -42,6 +38,9 @@ public class EmailController {
     @Setter(onMethod = @__(@Autowired))
     private StringRedisTemplate stringRedisTemplate;
 
+    @Setter(onMethod = @__(@Autowired))
+    private EmailService emailService;
+
     /**
      * 发送用户注册验证码
      * @param dto 请求参数
@@ -49,8 +48,8 @@ public class EmailController {
      * @date 2022/8/7 2:56 AM
      */
     @PostMapping("/user/register/send_register_code")
-    public R userRegisterCode(UserRegisterCodeDto dto) throws MessagingException {
-
+    public R userRegisterCode(UserRegisterCodeDto dto) throws MessagingException, UnsupportedEmailServiceProviderException {
+        boolean b = emailService.userRegisterCode(dto.getEmailNo());
         return R.ok();
     }
 

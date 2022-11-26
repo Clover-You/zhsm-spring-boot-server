@@ -2,6 +2,9 @@ package top.ctong.commerce.smartcommerce.service;
 
 import top.ctong.commerce.smartcommerce.Util.email.exception.UnsupportedEmailServiceProviderException;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
@@ -23,9 +26,10 @@ import top.ctong.commerce.smartcommerce.Util.email.exception.UnsupportedEmailSer
 public interface EmailService {
     /**
      * 发送用户注册邮箱
+     * @param email 邮箱
      * @return boolean 发送成功与否
      * @author Clover You
      * @date 2022/8/7 3:13 AM
      */
-    boolean userRegisterCode() throws UnsupportedEmailServiceProviderException;
+    boolean userRegisterCode(@NotNull String email) throws UnsupportedEmailServiceProviderException;
 }
