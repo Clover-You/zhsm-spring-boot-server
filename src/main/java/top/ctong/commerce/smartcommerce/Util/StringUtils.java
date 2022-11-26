@@ -1,4 +1,9 @@
-package top.ctong.commerce.smartcommerce.Util;/**
+package top.ctong.commerce.smartcommerce.Util;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+/**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
  * ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░      ██████╔╝██║   ██║██║  ███╗
@@ -10,10 +15,12 @@ package top.ctong.commerce.smartcommerce.Util;/**
  * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
- * 
+ * 字符串工具类
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
  * @create 2022-11-26 16:13
- */public class StringUtils {
+ */
+public class StringUtils extends org.springframework.util.StringUtils {
+
 }
