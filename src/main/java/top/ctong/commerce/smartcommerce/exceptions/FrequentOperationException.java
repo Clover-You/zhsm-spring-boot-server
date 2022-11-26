@@ -1,4 +1,6 @@
-package top.ctong.commerce.smartcommerce.exceptions;/**
+package top.ctong.commerce.smartcommerce.exceptions;
+
+/**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
  * ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░      ██████╔╝██║   ██║██║  ███╗
@@ -15,5 +17,6 @@ package top.ctong.commerce.smartcommerce.exceptions;/**
  * @author Clover You
  * @email cloveryou02@163.com
  * @create 2022-11-26 16:43
- */public class FrequentOpretionException {
+ */
+public class FrequentOperationException {
 }
