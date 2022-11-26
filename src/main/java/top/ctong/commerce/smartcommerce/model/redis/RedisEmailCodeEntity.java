@@ -1,4 +1,10 @@
-package top.ctong.commerce.smartcommerce.model.redis;/**
+package top.ctong.commerce.smartcommerce.model.redis;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
  * ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░      ██████╔╝██║   ██║██║  ███╗
@@ -15,5 +21,24 @@ package top.ctong.commerce.smartcommerce.model.redis;/**
  * @author Clover You
  * @email cloveryou02@163.com
  * @create 2022-11-26 16:06
- */public class RedisEmailCodeEntity {
+ */
+@Data
+public class RedisEmailCodeEntity implements Serializable {
+
+    private static final long serialVersionUID = 2798426928054393720L;
+
+    /**
+     * 验证码
+     */
+    private String code;
+
+    /**
+     * 邮箱
+     */
+    private String emial;
+
+    /**
+     * 创建日期
+     */
+    private Long creatAt;
 }
