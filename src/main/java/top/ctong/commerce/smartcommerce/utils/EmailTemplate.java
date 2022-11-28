@@ -68,6 +68,10 @@ public class EmailTemplate {
          * 收件人
          */
         private String[] recipients;
+
+        public void setRecipients(String ...recipient) {
+            this.recipients = recipient;
+        }
     }
 
     public void send(EmailConfig config) throws MessagingException, AddressException {
