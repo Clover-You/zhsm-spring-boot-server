@@ -1,14 +1,11 @@
 package top.ctong.commerce.smartcommerce.controller;
 
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.ctong.commerce.smartcommerce.Util.R;
+import top.ctong.commerce.smartcommerce.utils.R;
 import top.ctong.commerce.smartcommerce.model.dto.UserLoginDto;
-import top.ctong.commerce.smartcommerce.service.EmailService;
 
 import javax.validation.Valid;
 
