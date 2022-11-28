@@ -1,7 +1,4 @@
-package top.ctong.commerce.smartcommerce.Util;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+package top.ctong.commerce.smartcommerce.utils;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗

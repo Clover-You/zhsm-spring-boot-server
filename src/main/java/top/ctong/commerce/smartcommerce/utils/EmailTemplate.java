@@ -1,11 +1,10 @@
-package top.ctong.commerce.smartcommerce.Util;
+package top.ctong.commerce.smartcommerce.utils;
 
 import lombok.Data;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -13,8 +12,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Arrays;
 import java.util.Properties;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
