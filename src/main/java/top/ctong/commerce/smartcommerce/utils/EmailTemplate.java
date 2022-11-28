@@ -10,6 +10,7 @@ import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -60,6 +61,11 @@ public class EmailTemplate {
         private String subject;
 
         /**
+         * 发件人
+         */
+        private String sender;
+
+        /**
          * 内容
          */
         private String content;
@@ -87,7 +93,10 @@ public class EmailTemplate {
         transport.connect(this.host, this.username, this.pass);
 
         MimeMessage message = new MimeMessage(session);
-        message.addFrom(new InternetAddress[]{new InternetAddress(this.username)});
+        message.addFrom(new InternetAddress[]{new InternetAddress(
+            config.getSender() == null ? this.username :
+                config.getSender() + "<" + this.username + ">"
+        )});
 
         // 将收件人地址转 Address[]
         Address[] recipients = Arrays.stream(config.getRecipients()).map(it -> {
@@ -99,7 +108,7 @@ public class EmailTemplate {
         }).toArray(InternetAddress[]::new);
 
         message.setRecipients(Message.RecipientType.TO, recipients);
-        message.setSubject(config.getSubject());
+        message.setSubject(config.getSubject(), "UTF-8");
         message.setContent(config.getContent(), "text/html;charset=UTF-8");
 
         transport.sendMessage(message, message.getAllRecipients());

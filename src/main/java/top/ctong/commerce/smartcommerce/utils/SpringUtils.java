@@ -1,4 +1,9 @@
-package top.ctong.commerce.smartcommerce.utils;/**
+package top.ctong.commerce.smartcommerce.utils;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+
+/**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
  * ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░      ██████╔╝██║   ██║██║  ███╗
@@ -10,10 +15,19 @@ package top.ctong.commerce.smartcommerce.utils;/**
  * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
- * springboot 
+ * springboot
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
  * @create 2022-11-28 15:45
- */public class SpringUtils {
+ */
+@Component
+public class SpringUtils {
+
+    public static ApplicationContext contextHolder;
+
+    public SpringUtils(ApplicationContext context) {
+        contextHolder = context;
+    }
+
 }
