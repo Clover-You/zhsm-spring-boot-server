@@ -1,5 +1,8 @@
 package top.ctong.commerce.smartcommerce.enums;
 
+import lombok.Getter;
+import top.ctong.commerce.smartcommerce.exceptions.FrequentOperationException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,20 +27,27 @@ import java.util.Map;
 public enum RespStatus {
 
     /**
-     * 响应成功状态，状态码：0
+     * 响应成功状态，状态码：200
      */
-    OK(0, "successful~"),
+    OK(200, "successful"),
 
-    FAIL(500, "server exception!");
+    FAIL(500, "failure"),
+
+    /**
+     * frequent operation
+     */
+    FREQUENT_OPERATION(10000, "operation.frequent");
 
     /**
      * 响应状态码
      */
+    @Getter
     private int code;
 
     /**
      * 响应消息
      */
+    @Getter
     private String msg;
 
     /**
