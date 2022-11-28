@@ -1,5 +1,7 @@
 package top.ctong.commerce.smartcommerce.exceptions;
 
+import top.ctong.commerce.smartcommerce.enums.RespStatus;
+
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
@@ -18,5 +20,12 @@ package top.ctong.commerce.smartcommerce.exceptions;
  * @email cloveryou02@163.com
  * @create 2022-11-26 16:43
  */
-public class FrequentOperationException {
+public class FrequentOperationException extends BaseException {
+    public FrequentOperationException() {
+        super(RespStatus.FREQUENT_OPERATION);
+    }
+
+    public FrequentOperationException(RespStatus rs) {
+        super(rs);
+    }
 }

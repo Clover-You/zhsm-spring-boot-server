@@ -2,16 +2,19 @@ package top.ctong.commerce.smartcommerce.controller;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.ctong.commerce.smartcommerce.Util.R;
-import top.ctong.commerce.smartcommerce.Util.email.exception.UnsupportedEmailServiceProviderException;
+import top.ctong.commerce.smartcommerce.enums.RespStatus;
 import top.ctong.commerce.smartcommerce.model.dto.UserRegisterCodeDto;
 import top.ctong.commerce.smartcommerce.service.EmailService;
+import top.ctong.commerce.smartcommerce.utils.R;
 
 import javax.mail.*;
+import java.util.Locale;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -47,9 +50,9 @@ public class EmailController {
      * @author Clover You
      * @date 2022/8/7 2:56 AM
      */
-    @PostMapping("/user/register/send_register_code")
-    public R userRegisterCode(UserRegisterCodeDto dto) throws MessagingException, UnsupportedEmailServiceProviderException {
-        boolean b = emailService.userRegisterCode(dto.getEmailNo());
+    @GetMapping("/user/register/send_register_code")
+    public R userRegisterCode(UserRegisterCodeDto dto) throws MessagingException {
+        emailService.userRegisterCode(dto.getEmailNo());
         return R.ok();
     }
 

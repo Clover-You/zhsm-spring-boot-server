@@ -36,7 +36,12 @@ public enum RespStatus {
     /**
      * frequent operation
      */
-    FREQUENT_OPERATION(10000, "operation.frequent");
+    FREQUENT_OPERATION(10000, "operation.frequent"),
+
+    /**
+     * email send success
+     */
+    EMAIL_SENT_SUCCESSFULLY(11100, "email_sent_successfully");
 
     /**
      * 响应状态码
