@@ -9,6 +9,9 @@ spring:
   jackson:
     date-format: yyyy-MM-dd hh:mm
     time-zone: GMT+8
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
