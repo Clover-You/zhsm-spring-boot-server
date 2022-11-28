@@ -1,4 +1,4 @@
-package top.ctong.commerce.smartcommerce.Util;
+package top.ctong.commerce.smartcommerce.utils;
 
 import top.ctong.commerce.smartcommerce.enums.RespStatus;
 
@@ -26,13 +26,19 @@ import java.util.HashMap;
 public final class R extends HashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = -1079895209012455122L;
 
-    private R(RespStatus http) {
+    private R(RespStatus http, Object ...args) {
         super(http.json());
+        this.put("msg", LocaleUtils.contextHolder.getMsg(http.getMsg(), args));
+    }
+
+    private R(RespStatus http, Object data, Object ...args) {
+        super(http.json());
+        this.put("data", data);
+        this.put("msg", LocaleUtils.contextHolder.getMsg(http.getMsg(), args));
     }
 
     private R(RespStatus http, Object data) {
-        super(http.json());
-        this.put("data", data);
+        this(http, data, null);
     }
 
     /**
