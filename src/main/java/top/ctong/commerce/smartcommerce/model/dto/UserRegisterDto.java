@@ -1,13 +1,8 @@
-package top.ctong.commerce.smartcommerce.config;
+package top.ctong.commerce.smartcommerce.model.dto;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -21,24 +16,25 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
- * redis 配置
+ * 邮箱注册
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
- * @create 2022-11-26 16:22
+ * @create 2022-12-02 14:18
  */
-@Configuration
-public class RedisConfig {
+@Data
+public class UserRegisterByMailDto implements Serializable {
 
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Object> rt = new RedisTemplate<>();
-        // 设置默认的连接工厂
-        rt.setConnectionFactory(redisConnectionFactory);
+    private static final long serialVersionUID = 1741158070775330804L;
 
-        // 设置 redis 序列化器
-        rt.setKeySerializer(new StringRedisSerializer());
-        rt.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        return rt;
-    }
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 验证吗
+     */
+    private String verifyCode;
+
 }

@@ -1,13 +1,5 @@
-package top.ctong.commerce.smartcommerce.config;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+package top.ctong.commerce.smartcommerce.controller.userPlatformStrategy;
+import java.io.Serializable;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -21,24 +13,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
- * redis 配置
+ * 用户平台策略兼容基类
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
- * @create 2022-11-26 16:22
- */
-@Configuration
-public class RedisConfig {
-
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Object> rt = new RedisTemplate<>();
-        // 设置默认的连接工厂
-        rt.setConnectionFactory(redisConnectionFactory);
-
-        // 设置 redis 序列化器
-        rt.setKeySerializer(new StringRedisSerializer());
-        rt.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        return rt;
-    }
+ * @create 2022-12-02 15:14
+ */public class UserPlatformStrategy implements Serializable {
 }
