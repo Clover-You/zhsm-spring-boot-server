@@ -34,7 +34,7 @@ import java.util.Properties;
  */
 @Slf4j
 @Configuration
-@ConfigurationProperties("spring.email")
+@ConfigurationProperties(prefix = "zhsm.email")
 public class EmailTemplate {
 
     @Setter

@@ -30,3 +30,9 @@ springfox:
   documentation:
     swagger-ui:
       enabled: true
+zhsm:
+  email:
+    host: smtp.qq.com
+    protocol: smtp
+    username: 2621869236@qq.com
+    pass: ptnzfqgkyhwmdhgb

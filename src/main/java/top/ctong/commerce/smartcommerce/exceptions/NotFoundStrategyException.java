@@ -1,4 +1,7 @@
-package top.ctong.commerce.smartcommerce.s;/**
+package top.ctong.commerce.smartcommerce.exceptions;
+import java.io.Serializable;
+
+/**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
  * ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░      ██████╔╝██║   ██║██║  ███╗
@@ -10,10 +13,10 @@ package top.ctong.commerce.smartcommerce.s;/**
  * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
- * 自定义条件
+ * 策略找不到
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
- * @create 2022-12-02 14:37
- */public interface NullballCondition {
+ * @create 2022-12-02 15:24
+ */public class NotFoundStrategyException implements Serializable {
 }
