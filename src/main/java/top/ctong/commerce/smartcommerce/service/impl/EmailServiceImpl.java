@@ -57,7 +57,7 @@ public class EmailServiceImpl implements EmailService {
      * @date 2022/8/7 3:13 AM
      */
     @Override
-    public boolean userRegisterCode(String email) {
+    public boolean userRegisterCode(String email) throws FrequentOperationException {
         String emailMd5 = DigestUtils.md5DigestAsHex(email.getBytes());
         String cacheKey = RedisKeys.USER_REGISTER_EMAIL_CODE.KEY() + emailMd5;
 
@@ -66,7 +66,7 @@ public class EmailServiceImpl implements EmailService {
 
         if (oldCode != null) {
             // 超过一分钟才可以再次刷新
-            if (System.currentTimeMillis() - oldCode.getCreatAt() >= 60000) {
+            if (System.currentTimeMillis() - oldCode.getCreatAt() <= 60000) {
                 throw new FrequentOperationException();
             }
         }
