@@ -1,7 +1,8 @@
-package top.ctong.commerce.smartcommerce.components.userPlatformStrategy;
+package top.ctong.commerce.smartcommerce.exceptions;
 
-import top.ctong.commerce.smartcommerce.exceptions.ParamsErrorException;
-import top.ctong.commerce.smartcommerce.utils.R;
+import top.ctong.commerce.smartcommerce.enums.RespStatus;
+
+import java.io.Serializable;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -15,20 +16,21 @@ import top.ctong.commerce.smartcommerce.utils.R;
  * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
- *
+ * 参数异常
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
- * @create 2022-12-02 15:19
+ * @create 2022-12-06 21:33
  */
-public interface UserPlatformGranter {
+public class ParamsErrorException extends BaseException {
 
-    /**
-     * 用户注册
-     * @return R
-     * @author Clover You
-     * @date 2022/12/2 15:32
-     */
-    R register(String username, String password, String verifyCode) throws ParamsErrorException;
+    private static final long serialVersionUID = 1270111699768696136L;
 
+    public ParamsErrorException(RespStatus status, Object... arg) {
+        super(status, arg);
+    }
+
+    public ParamsErrorException(String msg, RespStatus status, Object... arg) {
+        super(msg, status, arg);
+    }
 }

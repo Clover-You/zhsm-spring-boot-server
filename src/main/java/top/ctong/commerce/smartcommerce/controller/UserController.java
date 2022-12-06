@@ -10,6 +10,7 @@ import top.ctong.commerce.smartcommerce.components.userPlatformStrategy.UserPlat
 import top.ctong.commerce.smartcommerce.components.userPlatformStrategy.UserPlatformStrategyBuilder;
 import top.ctong.commerce.smartcommerce.enums.RespStatus;
 import top.ctong.commerce.smartcommerce.exceptions.NotFoundStrategyException;
+import top.ctong.commerce.smartcommerce.exceptions.ParamsErrorException;
 import top.ctong.commerce.smartcommerce.exceptions.UnsupportedLoginMethodException;
 import top.ctong.commerce.smartcommerce.model.dto.UserRegisterDto;
 import top.ctong.commerce.smartcommerce.utils.R;
@@ -71,11 +72,11 @@ public class UserController {
      * @date 2022/8/7 2:39 AM
      */
     @PutMapping("/register")
-    public R register(UserRegisterDto dto) throws UnsupportedLoginMethodException {
+    public R register(UserRegisterDto dto) throws UnsupportedLoginMethodException, ParamsErrorException {
         try {
             // 通过平台获取对应的登录方式
             UserPlatformGranter granter = platformStrategyBuilder.getGranter(dto.getMethod());
-            return granter.register();
+            return granter.register(dto.getUsername(), dto.getPassword(), dto.getVerifyCode());
         } catch (NotFoundStrategyException e) {
             throw new UnsupportedLoginMethodException(RespStatus.UNSUPPORTED_LOGIN_METHOD);
         }

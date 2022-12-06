@@ -41,12 +41,18 @@ public enum RespStatus {
     /**
      * email send success
      */
-    EMAIL_SENT_SUCCESSFULLY(11100, "email_sent_successfully"),
+    EMAIL_SENT_SUCCESSFULLY(200, "email_sent_successfully"),
 
     /**
      * unsupported login method
      */
-    UNSUPPORTED_LOGIN_METHOD(501, "unsupported_login_method");
+    UNSUPPORTED_LOGIN_METHOD(501, "unsupported_login_method"),
+
+    /**  params correlation error **/
+
+    VERIFY_CODE_ERROR(10100, "verify_code_error"),
+
+    EMAIL_HAS_BEEN_REGISTERED(10101, "email_has_been_registered");
 
     /**
      * 响应状态码
