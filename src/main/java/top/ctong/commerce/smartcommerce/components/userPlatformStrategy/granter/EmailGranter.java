@@ -60,7 +60,7 @@ public class EmailGranter implements Serializable, UserPlatformGranter {
         BoundValueOperations<String, Object> ops = redisTemplate.boundValueOps(redisKey);
 
         RedisEmailCodeEntity emailCodeEntity = (RedisEmailCodeEntity) ops.get();
-        if (emailCodeEntity == null || emailCodeEntity.getCode().equals(verifyCode)) {
+        if (emailCodeEntity == null || !emailCodeEntity.getCode().equals(verifyCode)) {
             throw new ParamsErrorException(RespStatus.VERIFY_CODE_ERROR);
         }
 
