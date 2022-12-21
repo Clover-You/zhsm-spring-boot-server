@@ -20,6 +20,12 @@ spring:
     protocol: smtp
     username: 2621869236@qq.com
     pass: ptnzfqgkyhwmdhgb
+  profiles:
+    group:
+      dev:
+        - dev
+        - local
+    default: dev
 mybatis-plus:
   global-config:
     db-config:

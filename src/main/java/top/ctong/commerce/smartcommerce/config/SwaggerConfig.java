@@ -1,4 +1,9 @@
 package top.ctong.commerce.smartcommerce.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import springfox.documentation.oas.annotations.EnableOpenApi;
+
 import java.io.Serializable;
 
 /**
@@ -18,5 +23,10 @@ import java.io.Serializable;
  * @author Clover You
  * @email cloveryou02@163.com
  * @create 2022-12-14 14:13
- */public class SwaggerConfig implements Serializable {
+ */
+@Profile({"dev"})
+@EnableOpenApi
+@Configuration
+public class SwaggerConfig {
+
 }
