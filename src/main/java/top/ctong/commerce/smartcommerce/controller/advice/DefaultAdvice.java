@@ -1,6 +1,7 @@
 package top.ctong.commerce.smartcommerce.controller.advice;
 
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -31,6 +32,7 @@ import java.util.Locale;
  * @email cloveryou02@163.com
  * @create 2022-08-07 3:46 AM
  */
+@Slf4j
 @ControllerAdvice("top.ctong.commerce.smartcommerce.controller")
 public class DefaultAdvice {
 
@@ -52,6 +54,10 @@ public class DefaultAdvice {
     @ResponseBody
     @ExceptionHandler({Exception.class})
     public R defaultExceptionHandler(Exception e) {
+        if (log.isDebugEnabled()) {
+            e.printStackTrace();
+        }
         return R.fail();
     }
+
 }

@@ -1,7 +1,6 @@
 package top.ctong.commerce.smartcommerce.components.userPlatformStrategy;
 
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import top.ctong.commerce.smartcommerce.exceptions.NotFoundStrategyException;
 
@@ -26,12 +25,14 @@ import java.util.Map;
  * @email cloveryou02@163.com
  * @create 2022-12-02 15:17
  */
+@Slf4j
 @Component
 public class UserPlatformStrategyBuilder {
 
     private Map<String, UserPlatformGranter> granters;
 
     public UserPlatformStrategyBuilder(Map<String, UserPlatformGranter> granters) {
+        log.info("granters = {}", granters);
         this.granters = granters;
     }
 
@@ -43,7 +44,7 @@ public class UserPlatformStrategyBuilder {
      * @date 2022/12/2 15:30
      */
     public UserPlatformGranter getGranter(@NotNull String granter) throws NotFoundStrategyException {
-        UserPlatformGranter target = granters.get(granter);
+        UserPlatformGranter target = granters.get(granter + "Granter");
         if (target == null) throw new NotFoundStrategyException("without this strategy [" + granter + "]");
 
         return target;

@@ -1,15 +1,16 @@
 package top.ctong.commerce.smartcommerce.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import top.ctong.commerce.smartcommerce.dao.UserDao;
 import top.ctong.commerce.smartcommerce.model.UserModel;
 import top.ctong.commerce.smartcommerce.service.UserService;
+import top.ctong.commerce.smartcommerce.utils.IdUtils;
 
-import java.io.Serializable;
+import java.util.Date;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -57,8 +58,16 @@ public class UserServiceImpl implements UserService {
      * @author Clover You
      * @date 2022/12/6 21:58
      */
+    @Transactional
     @Override
-    public Boolean registerByEmail(String emailNo, String password) {
-        return null;
+    public String registerByEmail(String emailNo, String password) {
+        UserModel userModel = new UserModel();
+        userModel.setEmail(emailNo);
+        userModel.setPass(password);
+        userModel.setCreateAt(new Date());
+        userModel.setUserId(IdUtils.get32UUID());
+
+        userDao.registerByEmail(userModel);
+        return userModel.getUserId();
     }
 }

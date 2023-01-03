@@ -2,10 +2,7 @@ package top.ctong.commerce.smartcommerce.controller;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.ctong.commerce.smartcommerce.components.userPlatformStrategy.UserPlatformGranter;
 import top.ctong.commerce.smartcommerce.components.userPlatformStrategy.UserPlatformStrategyBuilder;
 import top.ctong.commerce.smartcommerce.enums.RespStatus;
@@ -72,7 +69,7 @@ public class UserController {
      * @date 2022/8/7 2:39 AM
      */
     @PutMapping("/register")
-    public R register(UserRegisterDto dto) throws UnsupportedLoginMethodException, ParamsErrorException {
+    public R register(@RequestBody UserRegisterDto dto) throws UnsupportedLoginMethodException, ParamsErrorException {
         try {
             // 通过平台获取对应的登录方式
             UserPlatformGranter granter = platformStrategyBuilder.getGranter(dto.getMethod());

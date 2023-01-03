@@ -1,6 +1,8 @@
-package top.ctong.commerce.smartcommerce.service;
+package top.ctong.commerce.smartcommerce.utils;
 
-import javax.validation.constraints.NotNull;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+
+import java.io.Serializable;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -14,30 +16,23 @@ import javax.validation.constraints.NotNull;
  * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
- * 用户服务
+ * id生成器
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
- * @create 2022-12-06 21:46
+ * @create 2022-12-21 23:12
  */
-public interface UserService {
+public class IdUtils implements Serializable {
+
+    private static final long serialVersionUID = -8361048879334334194L;
 
     /**
-     * 通过用户名查找用户是否存在
-     * @param username 用户名
-     * @return Boolean
+     * 获取32位的uuid
+     * @return String
      * @author Clover You
-     * @date 2022/12/6 21:48
+     * @date 2022/12/21 23:25
      */
-    Boolean checkExistByUsername(@NotNull String username);
-
-    /**
-     * 通过邮箱注册账号
-     * @param emailNo 邮箱
-     * @param password 密码
-     * @return Boolean
-     * @author Clover You
-     * @date 2022/12/6 21:58
-     */
-    String registerByEmail(@NotNull String emailNo, @NotNull String password);
+    public static String get32UUID() {
+        return IdWorker.get32UUID();
+    }
 }

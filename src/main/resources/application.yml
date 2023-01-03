@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
-    url: jdbc:mysql://127.0.0.1:3306/zhsm&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF8
+    url: jdbc:mysql://127.0.0.1:3306/zhsm #&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF8
   jackson:
     date-format: yyyy-MM-dd hh:mm
     time-zone: GMT+8
@@ -42,3 +42,6 @@ zhsm:
     protocol: smtp
     username: 2621869236@qq.com
     pass: ptnzfqgkyhwmdhgb
+logging:
+  level:
+    top.ctong.commerce.smartcommerce: debug

@@ -1,6 +1,7 @@
 package top.ctong.commerce.smartcommerce.components.userPlatformStrategy.granter;
 
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,6 +14,7 @@ import top.ctong.commerce.smartcommerce.exceptions.ParamsErrorException;
 import top.ctong.commerce.smartcommerce.model.redis.RedisEmailCodeEntity;
 import top.ctong.commerce.smartcommerce.service.UserService;
 import top.ctong.commerce.smartcommerce.utils.R;
+import top.ctong.commerce.smartcommerce.utils.StringUtils;
 
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
@@ -36,6 +38,7 @@ import java.nio.charset.StandardCharsets;
  * @create 2022-12-02 15:46
  */
 @Component
+@Slf4j
 public class EmailGranter implements Serializable, UserPlatformGranter {
 
     private static final long serialVersionUID = 4064314388959468507L;
@@ -69,9 +72,12 @@ public class EmailGranter implements Serializable, UserPlatformGranter {
             // 邮箱已经被注册了
             throw new ParamsErrorException(RespStatus.EMAIL_HAS_BEEN_REGISTERED);
         }
+
         // 开始注册
-        Boolean flag = userService.registerByEmail(username, password);
-        if (!flag) return R.fail();
+        String userId = userService.registerByEmail(username, password);
+        if (!StringUtils.hasText(userId)) return R.fail();
+
+        log.debug("user id == {}", userId);
         return R.ok();
     }
 }
