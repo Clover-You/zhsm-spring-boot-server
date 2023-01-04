@@ -49,8 +49,13 @@ public class UserController {
      * @date 2022/8/7 2:36 AM
      */
     @PostMapping("/login")
-    public R login(@Valid UserLoginDto dto) {
-        return R.ok();
+    public R login(@RequestBody UserLoginDto dto) throws UnsupportedLoginMethodException {
+        try {
+            UserPlatformGranter granter = platformStrategyBuilder.getGranter(dto.getMethod());
+            return granter.login(dto);
+        } catch (NotFoundStrategyException e) {
+            throw new UnsupportedLoginMethodException(RespStatus.UNSUPPORTED_LOGIN_METHOD);
+        }
     }
 
     /**
@@ -75,7 +80,7 @@ public class UserController {
             UserPlatformGranter granter = platformStrategyBuilder.getGranter(dto.getMethod());
             return granter.register(dto.getUsername(), dto.getPassword(), dto.getVerifyCode());
         } catch (NotFoundStrategyException e) {
-            throw new UnsupportedLoginMethodException(RespStatus.UNSUPPORTED_LOGIN_METHOD);
+            throw new UnsupportedLoginMethodException(RespStatus.UNSUPPORTED_REGISTER_METHOD);
         }
     }
 

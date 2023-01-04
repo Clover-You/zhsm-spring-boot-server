@@ -35,4 +35,13 @@ public interface UserPlatformGranter {
      */
     R register(String username, String password, String verifyCode) throws ParamsErrorException;
 
+    /**
+     * 用户登录
+     * @param dto 登录参数
+     * @return R
+     * @author Clover You
+     * @date 2023/1/3 14:41
+     */
+    R login(UserLoginDto dto);
+
 }

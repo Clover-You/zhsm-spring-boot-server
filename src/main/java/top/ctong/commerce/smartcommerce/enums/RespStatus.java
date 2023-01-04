@@ -48,6 +48,11 @@ public enum RespStatus {
      */
     UNSUPPORTED_LOGIN_METHOD(501, "unsupported_login_method"),
 
+    /**
+     * unsupported register method
+     */
+    UNSUPPORTED_REGISTER_METHOD(501, "unsupported register method"),
+
     /**  params correlation error **/
 
     VERIFY_CODE_ERROR(10100, "verify_code_error"),
