@@ -11,6 +11,7 @@ import top.ctong.commerce.smartcommerce.components.userPlatformStrategy.UserPlat
 import top.ctong.commerce.smartcommerce.enums.RedisKeys;
 import top.ctong.commerce.smartcommerce.enums.RespStatus;
 import top.ctong.commerce.smartcommerce.exceptions.ParamsErrorException;
+import top.ctong.commerce.smartcommerce.model.dto.UserLoginDto;
 import top.ctong.commerce.smartcommerce.model.redis.RedisEmailCodeEntity;
 import top.ctong.commerce.smartcommerce.service.UserService;
 import top.ctong.commerce.smartcommerce.utils.R;
@@ -79,5 +80,17 @@ public class EmailGranter implements Serializable, UserPlatformGranter {
 
         log.debug("user id == {}", userId);
         return R.ok();
+    }
+
+    /**
+     * 用户登录
+     * @param dto 登录参数
+     * @return R
+     * @author Clover You
+     * @date 2023/1/3 14:41
+     */
+    @Override
+    public R login(UserLoginDto dto) {
+        return null;
     }
 }
