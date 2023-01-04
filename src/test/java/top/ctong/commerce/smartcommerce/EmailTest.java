@@ -4,7 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.ctong.commerce.smartcommerce.utils.EmailTemplate;
+import top.ctong.commerce.smartcommerce.components.email.EmailConfig;
+import top.ctong.commerce.smartcommerce.components.email.EmailTemplate;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -70,8 +71,8 @@ public class EmailTest {
     @Test
     @DisplayName("EmailTemplate 测试")
     void templateTest() throws MessagingException {
-        EmailTemplate.EmailConfig config = new EmailTemplate.EmailConfig();
-        config.setRecipients(new String[]{"2621869236@qq.com", "cloveryou02@163.com"});
+        EmailConfig config = new EmailConfig();
+        config.setRecipients("2621869236@qq.com", "cloveryou02@163.com");
         config.setContent("hello world");
         config.setSubject("测试标题");
         emailTemplate.send(config);

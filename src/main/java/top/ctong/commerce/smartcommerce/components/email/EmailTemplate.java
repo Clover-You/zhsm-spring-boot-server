@@ -1,16 +1,14 @@
-package top.ctong.commerce.smartcommerce.utils;
+package top.ctong.commerce.smartcommerce.components.email;
 
 import lombok.Data;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -33,56 +31,19 @@ import java.util.Properties;
  * @create 2022-11-26 14:24
  */
 @Slf4j
-@Configuration
-@ConfigurationProperties(prefix = "zhsm.email")
+@Component
+@EnableConfigurationProperties(EmailConfigurationProperties.class)
 public class EmailTemplate {
 
-    @Setter
-    private String host;
+    private final EmailConfigurationProperties globalConfig;
 
-    @Setter
-    private String protocol;
-
-    @Setter
-    private String username;
-
-    @Setter
-    private String pass;
-
-    @Setter
-    private String sender;
-
-    @Data
-    public static class EmailConfig {
-
-        /**
-         * 标题
-         */
-        private String subject;
-
-        /**
-         * 发件人
-         */
-        private String sender;
-
-        /**
-         * 内容
-         */
-        private String content;
-
-        /**
-         * 收件人
-         */
-        private String[] recipients;
-
-        public void setRecipients(String ...recipient) {
-            this.recipients = recipient;
-        }
+    EmailTemplate(EmailConfigurationProperties conf) {
+        globalConfig = conf;
     }
 
     public void send(EmailConfig config) throws MessagingException, AddressException {
         Properties properties = System.getProperties();
-        properties.setProperty("mail.transport.protocol", this.protocol);
+        properties.setProperty("mail.transport.protocol", globalConfig.getProtocol());
         properties.setProperty("mail.smtp.auth", "true");
 
         Session session = Session.getDefaultInstance(properties);
@@ -90,12 +51,12 @@ public class EmailTemplate {
 
         Transport transport = session.getTransport();
 
-        transport.connect(this.host, this.username, this.pass);
+        transport.connect(globalConfig.getHost(), globalConfig.getUsername(), globalConfig.getPass());
 
         MimeMessage message = new MimeMessage(session);
         message.addFrom(new InternetAddress[]{new InternetAddress(
-            config.getSender() == null ? this.username :
-                config.getSender() + "<" + this.username + ">"
+            config.getSender() == null ? globalConfig.getUsername() :
+                config.getSender() + "<" + globalConfig.getUsername() + ">"
         )});
 
         // 将收件人地址转 Address[]

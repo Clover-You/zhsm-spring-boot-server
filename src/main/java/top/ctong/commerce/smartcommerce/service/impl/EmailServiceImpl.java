@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import top.ctong.commerce.smartcommerce.components.email.EmailConfig;
 import top.ctong.commerce.smartcommerce.exceptions.FrequentOperationException;
-import top.ctong.commerce.smartcommerce.utils.EmailTemplate;
+import top.ctong.commerce.smartcommerce.components.email.EmailTemplate;
 import top.ctong.commerce.smartcommerce.enums.RedisKeys;
 import top.ctong.commerce.smartcommerce.model.redis.RedisEmailCodeEntity;
 import top.ctong.commerce.smartcommerce.service.EmailService;
@@ -83,7 +84,7 @@ public class EmailServiceImpl implements EmailService {
         // 缓存30分钟
         ops.set(redisEmailCode, 30, TimeUnit.MINUTES);
 
-        EmailTemplate.EmailConfig config = new EmailTemplate.EmailConfig();
+        EmailConfig config = new EmailConfig();
         config.setSubject("新用户注册 -- 智慧商贸「学习项目」");
         config.setRecipients(email);
         config.setSender("Clover");
