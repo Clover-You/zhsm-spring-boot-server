@@ -1,6 +1,8 @@
 package top.ctong.commerce.smartcommerce.components.userPlatformStrategy;
 
 import top.ctong.commerce.smartcommerce.exceptions.ParamsErrorException;
+import top.ctong.commerce.smartcommerce.exceptions.PassErrorException;
+import top.ctong.commerce.smartcommerce.exceptions.UserNotFoundException;
 import top.ctong.commerce.smartcommerce.model.dto.UserLoginDto;
 import top.ctong.commerce.smartcommerce.utils.R;
 
@@ -42,6 +44,6 @@ public interface UserPlatformGranter {
      * @author Clover You
      * @date 2023/1/3 14:41
      */
-    R login(UserLoginDto dto);
+    R login(UserLoginDto dto) throws UserNotFoundException, PassErrorException, ParamsErrorException;
 
 }

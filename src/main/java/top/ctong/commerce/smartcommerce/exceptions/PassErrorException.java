@@ -2,8 +2,6 @@ package top.ctong.commerce.smartcommerce.exceptions;
 
 import top.ctong.commerce.smartcommerce.enums.RespStatus;
 
-import java.io.Serializable;
-
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
@@ -22,15 +20,15 @@ import java.io.Serializable;
  * @email cloveryou02@163.com
  * @create 2023-01-04 13:45
  */
-public class PassError extends BaseException {
+public class PassErrorException extends BaseException {
 
     private static final long serialVersionUID = -2472001253804342501L;
 
-    public PassError(RespStatus status, Object... arg) {
+    public PassErrorException(RespStatus status, Object... arg) {
         super(status, arg);
     }
 
-    public PassError(String msg, RespStatus status, Object... arg) {
+    public PassErrorException(String msg, RespStatus status, Object... arg) {
         super(msg, status, arg);
     }
 }

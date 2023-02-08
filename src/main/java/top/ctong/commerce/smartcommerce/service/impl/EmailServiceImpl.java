@@ -9,9 +9,9 @@ import org.springframework.util.DigestUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import top.ctong.commerce.smartcommerce.components.email.EmailConfig;
+import top.ctong.commerce.smartcommerce.constant.RedisKeys;
 import top.ctong.commerce.smartcommerce.exceptions.FrequentOperationException;
 import top.ctong.commerce.smartcommerce.components.email.EmailTemplate;
-import top.ctong.commerce.smartcommerce.enums.RedisKeys;
 import top.ctong.commerce.smartcommerce.model.redis.RedisEmailCodeEntity;
 import top.ctong.commerce.smartcommerce.service.EmailService;
 
@@ -60,7 +60,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public boolean userRegisterCode(String email) throws FrequentOperationException {
         String emailMd5 = DigestUtils.md5DigestAsHex(email.getBytes());
-        String cacheKey = RedisKeys.USER_REGISTER_EMAIL_CODE.KEY() + emailMd5;
+        String cacheKey = RedisKeys.USER_REGISTER_EMAIL_CODE + emailMd5;
 
         BoundValueOperations<String, Object> ops = redisTemplate.boundValueOps(cacheKey);
         RedisEmailCodeEntity oldCode = (RedisEmailCodeEntity) ops.get();

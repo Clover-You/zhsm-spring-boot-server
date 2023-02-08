@@ -8,15 +8,22 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 import top.ctong.commerce.smartcommerce.components.userPlatformStrategy.UserPlatformGranter;
-import top.ctong.commerce.smartcommerce.enums.RedisKeys;
+import top.ctong.commerce.smartcommerce.constant.RedisKeys;
 import top.ctong.commerce.smartcommerce.enums.RespStatus;
 import top.ctong.commerce.smartcommerce.exceptions.ParamsErrorException;
+import top.ctong.commerce.smartcommerce.exceptions.PassErrorException;
+import top.ctong.commerce.smartcommerce.exceptions.UserNotFoundException;
+import top.ctong.commerce.smartcommerce.model.UserModel;
 import top.ctong.commerce.smartcommerce.model.dto.UserLoginDto;
 import top.ctong.commerce.smartcommerce.model.redis.RedisEmailCodeEntity;
 import top.ctong.commerce.smartcommerce.service.UserService;
+import top.ctong.commerce.smartcommerce.utils.JwtUtils;
 import top.ctong.commerce.smartcommerce.utils.R;
 import top.ctong.commerce.smartcommerce.utils.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
@@ -50,6 +57,12 @@ public class EmailGranter implements Serializable, UserPlatformGranter {
     @Setter(onMethod = @__(@Autowired))
     private UserService userService;
 
+    @Setter(onMethod = @__(@Autowired))
+    private HttpServletRequest req;
+
+    @Setter(onMethod = @__(@Autowired))
+    private HttpServletResponse resp;
+
     /**
      * 用户注册
      * @return R
@@ -59,7 +72,7 @@ public class EmailGranter implements Serializable, UserPlatformGranter {
     @Override
     public R register(String username, String password, String verifyCode) throws ParamsErrorException {
         String usernameMd5 = DigestUtils.md5DigestAsHex(username.getBytes(StandardCharsets.UTF_8));
-        String redisKey = RedisKeys.USER_REGISTER_EMAIL_CODE.KEY() + usernameMd5;
+        String redisKey = RedisKeys.USER_REGISTER_EMAIL_CODE + usernameMd5;
 
         BoundValueOperations<String, Object> ops = redisTemplate.boundValueOps(redisKey);
 
@@ -90,7 +103,18 @@ public class EmailGranter implements Serializable, UserPlatformGranter {
      * @date 2023/1/3 14:41
      */
     @Override
-    public R login(UserLoginDto dto) {
-        return null;
+    public R login(UserLoginDto dto) throws UserNotFoundException, PassErrorException, ParamsErrorException {
+        if (!StringUtils.hasText(dto.getEmail())) {
+            throw new ParamsErrorException(RespStatus.EMAIL_CANNOT_BE_EMPTY);
+        }
+
+        if (!StringUtils.hasText(dto.getPass())) {
+            throw new ParamsErrorException(RespStatus.PASSWORD_CANNOT_BE_EMPTY);
+        }
+
+        UserModel userModel = userService.loginByEmailAndPass(dto.getEmail(), dto.getPass());
+        String jwt = JwtUtils.generatorToken(userModel);
+        resp.addHeader(JwtUtils.TOKEN_HEADER, jwt);
+        return R.ok(jwt);
     }
 }

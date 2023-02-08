@@ -57,4 +57,9 @@ public class UserLoginDto {
      */
     @NotBlank(message = "{userLoginDto.verifyCode.message}")
     private String verifyCode;
+
+    /**
+     * 登录方式
+     */
+    private String method;
 }

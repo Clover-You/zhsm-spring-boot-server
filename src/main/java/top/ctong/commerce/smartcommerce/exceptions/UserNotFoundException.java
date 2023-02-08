@@ -2,8 +2,6 @@ package top.ctong.commerce.smartcommerce.exceptions;
 
 import top.ctong.commerce.smartcommerce.enums.RespStatus;
 
-import java.io.Serializable;
-
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
  * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
@@ -22,15 +20,15 @@ import java.io.Serializable;
  * @email cloveryou02@163.com
  * @create 2023-01-04 13:40
  */
-public class UserNotFound extends BaseException {
+public class UserNotFoundException extends BaseException {
 
     private static final long serialVersionUID = -870915958782358531L;
 
-    public UserNotFound(RespStatus status, Object... arg) {
+    public UserNotFoundException(RespStatus status, Object... arg) {
         super(status, arg);
     }
 
-    public UserNotFound(String msg, RespStatus status, Object... arg) {
+    public UserNotFoundException(String msg, RespStatus status, Object... arg) {
         super(msg, status, arg);
     }
 }
