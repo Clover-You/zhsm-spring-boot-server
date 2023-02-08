@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService {
      * @date 2023/2/8 21:58
      */
     @Override
-    public UserModel queryUserById(@NotNull String userId) throws UserNotFoundException {
+    public UserModel queryUserById(@NotNull String userId) {
         UserModel userModel = userDao.selectById(userId);
         if (userModel != null) {
             return userModel;
@@ -149,13 +149,15 @@ public class UserServiceImpl implements UserService {
      * @author Clover You
      * @date 2023/2/8 22:20
      */
-    @Cacheable(cacheNames = RedisKeys.USER_SECURITY_DATA, key = "T()")
+    @Cacheable(
+        cacheNames = RedisKeys.USER_SECURITY_DATA,
+        key = "T(org.springframework.security.core.context.SecurityContextHolder).context.authentication.principal",
+        unless = "true")
     @Override
     public UserInfoVo currentUserInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 获取当前登录的用户ID
-        String userId = (String) authentication.getPrincipal();
-        UserDetailsModel userDetail = (UserDetailsModel) authentication.getDetails();
+        UserDetailsModel userDetail = (UserDetailsModel) authentication.getPrincipal();
 
         UserModel userModel = userDetail.getUserModel();
 
@@ -163,6 +165,22 @@ public class UserServiceImpl implements UserService {
         vo.setUser(userModel);
 
         return vo;
+    }
+
+    /**
+     * 通过用户ID获取用户信息
+     * @param userId 用户id
+     * @return UserDetails
+     * @author Clover You
+     * @date 2023/2/8 22:51
+     */
+    @Override
+    public UserDetailsModel userModelWrapperDetail(String userId) {
+        UserModel userModel = queryUserById(userId);
+        UserDetailsModel detailsModel = new UserDetailsModel();
+        detailsModel.setUserModel(userModel);
+
+        return detailsModel;
     }
 
 }

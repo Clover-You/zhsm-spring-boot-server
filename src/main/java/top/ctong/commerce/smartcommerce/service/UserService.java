@@ -1,8 +1,10 @@
 package top.ctong.commerce.smartcommerce.service;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.security.core.userdetails.UserDetails;
 import top.ctong.commerce.smartcommerce.exceptions.PassErrorException;
 import top.ctong.commerce.smartcommerce.exceptions.UserNotFoundException;
+import top.ctong.commerce.smartcommerce.model.UserDetailsModel;
 import top.ctong.commerce.smartcommerce.model.UserModel;
 import top.ctong.commerce.smartcommerce.model.vo.UserInfoVo;
 
@@ -63,7 +65,7 @@ public interface UserService {
      * @author Clover You
      * @date 2023/2/8 21:58
      */
-    UserModel queryUserById(@NotNull String userId) throws UserNotFoundException;
+    UserModel queryUserById(@NotNull String userId);
 
     /**
      * 获取当前登录用户完整信息
@@ -72,5 +74,14 @@ public interface UserService {
      * @date 2023/2/8 22:20
      */
     UserInfoVo currentUserInfo();
+
+    /**
+     * 通过用户ID获取用户信息
+     * @param userId 用户id
+     * @return UserDetails
+     * @author Clover You
+     * @date 2023/2/8 22:51
+     */
+    UserDetailsModel userModelWrapperDetail(String userId);
 
 }

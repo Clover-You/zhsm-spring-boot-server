@@ -2,6 +2,7 @@ package top.ctong.commerce.smartcommerce.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.hash.Jackson2HashMapper;
@@ -47,12 +48,16 @@ public class JwtUtils {
      */
     public static String TOKEN_HEADER;
 
+    public static String TOKEN_HEAD;
+
     public JwtUtils(@Value("${zhsm.jwt.secret}") String SECRET,
                     @Value("${zhsm.jwt.expire-time}") Integer EXPIRE_TIME,
-                    @Value("${zhsm.jwt.token-header}") String TOKEN_HEADER) {
+                    @Value("${zhsm.jwt.token-header}") String TOKEN_HEADER,
+                    @Value("${zhsm.jwt.token-head}") String TOKEN_HEAD) {
         JwtUtils.EXPIRE_TIME = EXPIRE_TIME;
         JwtUtils.SECRET = SECRET;
         JwtUtils.TOKEN_HEADER = TOKEN_HEADER;
+        JwtUtils.TOKEN_HEAD = TOKEN_HEAD;
     }
 
     /**
@@ -97,5 +102,27 @@ public class JwtUtils {
             .sign(Algorithm.HMAC256(SECRET));
     }
 
+    /**
+     * 在jwt中获取用户名
+     * @param token jwt token
+     * @return String
+     * @author Clover You
+     * @date 2023/2/8 23:14
+     */
+    public static String getUserNameFormJwt(String token) {
+        Map<String, Claim> claims = getClaims(token);
+        return claims.get("userId").asString();
+    }
+
+    /**
+     * 获取jwt数据
+     * @param token jwt token
+     * @return Map<Object>
+     * @author Clover You
+     * @date 2023/2/8 23:20
+     */
+    private static Map<String, Claim> getClaims(String token) {
+        return JWT.decode(token).getClaims();
+    }
 
 }

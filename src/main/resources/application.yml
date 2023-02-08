@@ -42,6 +42,7 @@ zhsm:
     token-header: Authorization
     secret: awkdlawmdlkmawoa
     expire-time: 60 # 60分钟
+    token-head: Base
 logging:
   level:
     top.ctong.commerce.smartcommerce: debug
