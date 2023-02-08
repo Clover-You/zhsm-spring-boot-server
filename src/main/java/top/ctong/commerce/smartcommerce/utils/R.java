@@ -6,15 +6,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 /**
- * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
- * ▓██   ▒ ██  ▓██▒▒██▀ ▀█   ██▄█▒      ██╔══██╗██║   ██║██╔════╝
- * ▒████ ░▓██  ▒██░▒▓█    ▄ ▓███▄░      ██████╔╝██║   ██║██║  ███╗
- * ░▓█▒  ░▓▓█  ░██░▒▓▓▄ ▄██▒▓██ █▄      ██╔══██╗██║   ██║██║   ██║
- * ░▒█░   ▒▒█████▓ ▒ ▓███▀ ░▒██▒ █▄     ██████╔╝╚██████╔╝╚██████╔╝
- * ▒ ░   ░▒▓▒ ▒ ▒ ░ ░▒ ▒  ░▒ ▒▒ ▓▒     ╚═════╝  ╚═════╝  ╚═════╝
- * ░     ░░▒░ ░ ░   ░  ▒   ░ ░▒ ▒░
- * ░ ░    ░░░ ░ ░ ░        ░ ░░ ░
- * ░     ░ ░      ░  ░
  * Copyright 2022 Clover You.
  * <p>
  * 统一响应数据结构
@@ -26,12 +17,12 @@ import java.util.HashMap;
 public final class R extends HashMap<String, Object> implements Serializable {
     private static final long serialVersionUID = -1079895209012455122L;
 
-    private R(RespStatus http, Object ...args) {
+    private R(RespStatus http, Object... args) {
         super(http.json());
         this.put("msg", LocaleUtils.contextHolder.getMsg(http.getMsg(), args));
     }
 
-    private R(RespStatus http, Object data, Object ...args) {
+    private R(RespStatus http, Object data, Object... args) {
         super(http.json());
         this.put("data", data);
         this.put("msg", LocaleUtils.contextHolder.getMsg(http.getMsg(), args));
@@ -63,6 +54,17 @@ public final class R extends HashMap<String, Object> implements Serializable {
      */
     public static R ok(RespStatus http) {
         return new R(http);
+    }
+
+    /**
+     * 带数据的成功响应
+     * @param data 响应数据
+     * @return R
+     * @author Clover You
+     * @date 2023/1/4 15:04
+     */
+    public static R ok(Object data) {
+        return new R(RespStatus.OK, data);
     }
 
     /**

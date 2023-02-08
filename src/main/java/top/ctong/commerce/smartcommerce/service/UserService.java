@@ -1,6 +1,10 @@
 package top.ctong.commerce.smartcommerce.service;
 
-import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;
+import top.ctong.commerce.smartcommerce.exceptions.PassErrorException;
+import top.ctong.commerce.smartcommerce.exceptions.UserNotFoundException;
+import top.ctong.commerce.smartcommerce.model.UserModel;
+import top.ctong.commerce.smartcommerce.model.vo.UserInfoVo;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -40,4 +44,33 @@ public interface UserService {
      * @date 2022/12/6 21:58
      */
     String registerByEmail(@NotNull String emailNo, @NotNull String password);
+
+
+    /**
+     * 用户邮箱登录
+     * @param email 邮箱
+     * @param pass 密码
+     * @return UserModel
+     * @author Clover You
+     * @date 2023/1/4 13:28
+     */
+    UserModel loginByEmailAndPass(@NotNull String email, @NotNull String pass) throws UserNotFoundException, PassErrorException;
+
+    /**
+     * 通过用户id查找用户信息
+     * @param userId 用户id
+     * @return UserModel
+     * @author Clover You
+     * @date 2023/2/8 21:58
+     */
+    UserModel queryUserById(@NotNull String userId) throws UserNotFoundException;
+
+    /**
+     * 获取当前登录用户完整信息
+     * @return UserInfoVo
+     * @author Clover You
+     * @date 2023/2/8 22:20
+     */
+    UserInfoVo currentUserInfo();
+
 }

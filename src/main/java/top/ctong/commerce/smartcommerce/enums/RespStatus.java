@@ -1,7 +1,6 @@
 package top.ctong.commerce.smartcommerce.enums;
 
 import lombok.Getter;
-import top.ctong.commerce.smartcommerce.exceptions.FrequentOperationException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,11 +52,21 @@ public enum RespStatus {
      */
     UNSUPPORTED_REGISTER_METHOD(501, "unsupported register method"),
 
-    /**  params correlation error **/
+    /**
+     * params correlation error
+     **/
 
     VERIFY_CODE_ERROR(10100, "verify_code_error"),
 
-    EMAIL_HAS_BEEN_REGISTERED(10101, "email_has_been_registered");
+    EMAIL_HAS_BEEN_REGISTERED(10101, "email_has_been_registered"),
+
+    USER_NOT_FOUND(10102, "user_not_found"),
+
+    USER_LOGIN_PASS_ERROR(10103, "user_login_pass_error"),
+
+    EMAIL_CANNOT_BE_EMPTY(10104, "email_cannot_be_empty"),
+
+    PASSWORD_CANNOT_BE_EMPTY(10105, "password_cannot_be_empty");
 
     /**
      * 响应状态码

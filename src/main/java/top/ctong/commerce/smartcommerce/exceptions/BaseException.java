@@ -22,7 +22,7 @@ import top.ctong.commerce.smartcommerce.enums.RespStatus;
  * @create 2022-11-26 16:44
  */
 @Data
-public abstract class BaseException extends Exception{
+public abstract class BaseException extends RuntimeException{
 
     private static final long serialVersionUID = 352653175534763518L;
 

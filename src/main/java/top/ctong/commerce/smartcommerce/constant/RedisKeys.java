@@ -17,6 +17,11 @@ public final class RedisKeys implements Serializable {
     /**
      * 用户登录信息
      */
-    public static final String USER_SECURITY_DATA = "WEB:USER-SECURITY-DATA";
+    public static final String USER_SECURITY_DATA = "WEB:USER-SECURITY-DATA:";
+
+    /**
+     * 用户注册邮箱验证码
+     */
+    public static final String USER_REGISTER_EMAIL_CODE = "WEB:USER-REGISTER-EMAIL-CODE:";
 
 }
