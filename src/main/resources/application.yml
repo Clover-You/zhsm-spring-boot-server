@@ -18,9 +18,10 @@ spring:
   profiles:
     group:
       dev:
+        - security
         - dev
         - local
-    default: dev
+    active: dev
 mybatis-plus:
   global-config:
     db-config:
@@ -37,6 +38,10 @@ zhsm:
     protocol: smtp
     username: 2621869236@qq.com
     pass: ptnzfqgkyhwmdhgb
+  jwt:
+    token-header: Authorization
+    secret: awkdlawmdlkmawoa
+    expire-time: 60 # 60分钟
 logging:
   level:
     top.ctong.commerce.smartcommerce: debug

@@ -1,12 +1,8 @@
-package top.ctong.commerce.smartcommerce.model;
+package top.ctong.commerce.smartcommerce.exceptions;
 
-import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import top.ctong.commerce.smartcommerce.enums.RespStatus;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀     ██████╗ ██╗   ██╗ ██████╗
@@ -20,58 +16,21 @@ import java.util.Collection;
  * ░     ░ ░      ░  ░
  * Copyright 2023 Clover You.
  * <p>
- *
+ * 用户不存在
  * </p>
  * @author Clover You
  * @email cloveryou02@163.com
- * @create 2023-01-03 17:51
+ * @create 2023-01-04 13:40
  */
-@Data
-public class UserDetailsModel implements Serializable, UserDetails {
+public class UserNotFound extends BaseException {
 
-    private static final long serialVersionUID = -6634310012028604770L;
+    private static final long serialVersionUID = -870915958782358531L;
 
-    private UserModel userModel;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+    public UserNotFound(RespStatus status, Object... arg) {
+        super(status, arg);
     }
 
-    @Override
-    public String getPassword() {
-        return userModel.getPass();
+    public UserNotFound(String msg, RespStatus status, Object... arg) {
+        super(msg, status, arg);
     }
-
-    /**
-     * 当前登录用户id
-     * @return String
-     * @author Clover You
-     * @date 2023/2/8 21:51
-     */
-    @Override
-    public String getUsername() {
-        return userModel.getUserId();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return userModel.getIsBanned();
-    }
-
 }

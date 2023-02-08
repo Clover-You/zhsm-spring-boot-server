@@ -1,0 +1,7 @@
+spring:
+  security:
+    permit-paths:
+      /user/register,
+      /user/login,
+      /email/user/register/send_register_code,
+      /static/**
